@@ -1,187 +1,87 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>CYC Heritage SMP</title>
-    <link rel="icon" type="image/png" href="icon.png">
-    <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-
-<header style="height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background-color: #333;">
-    <a href="./index.html" style="color: white; text-decoration: none; font-size: 1.5em;">
-        🌍 CYC Heritage SMP
-    </a>
-    <div>
-        <a href="./index.html" style="
-        background-color: #ff0000;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-left: 16px;
-        text-align: center;
-    " onmouseover="this.style.backgroundColor='#cc0000';" onmouseout="this.style.backgroundColor='#ff0000';">
-            Home
-        </a>
-        <a href="./news.html" style="
-        background-color: #ff0000;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-left: 16px;
-        text-align: center;
-    " onmouseover="this.style.backgroundColor='#cc0000';" onmouseout="this.style.backgroundColor='#ff0000';">
-            News
-        </a>
-        <a href="./teams.html" style="
-        background-color: #ff0000;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-left: 16px;
-        text-align: center;
-    " onmouseover="this.style.backgroundColor='#cc0000';" onmouseout="this.style.backgroundColor='#ff0000';">
-            Teams
-        </a>
-        <a href="./gallery.html" style="
-        background-color: #ff0000;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-left: 16px;
-        text-align: center;
-    " onmouseover="this.style.backgroundColor='#cc0000';" onmouseout="this.style.backgroundColor='#ff0000';">
-            Gallery
-        </a>
-    </div>
-</header>
-
-<h1>Want to post an image? Contact me at jackhaney22@gmail.com</h1>
-
-<footer>
-    <p style="position: absolute; left: 10px;">&copy; 2025 CYC Heritage SMP</p>
-
-    <!-- Discord -->
-    <a href="https://discord.gg/hZG2TCzyTB"
-       target="_blank"
-       class="icon"
-       aria-label="Discord Server">
-        <img src="Discord-white.svg" class="white" alt="Discord">
-        <img src="Discord.svg" class="color" alt="Discord">
-    </a>
-
-    <!-- QuickChat -->
-    <!--a href="https://qc1159.github.io/Quick-Chat/?chatwith=CYCHeritageSMP"
-       target="_blank"
-       class="icon"
-       aria-label="Quick Chat Page">
-        <img src="QuickChat-white.svg" class="white" alt="QuickChat">
-        <img src="QuickChat.svg" class="color" alt="QuickChat">
-    </a-->
-
-    <!-- YouTube -->
-    <a href="https://www.youtube.com/@CYCHeritageSMP"
-       target="_blank"
-       class="icon"
-       aria-label="YouTube Channel">
-        <img src="Youtube-white.svg" class="white" alt="YouTube">
-        <img src="Youtube.svg" class="color" alt="YouTube">
-    </a>
-</footer>
-
-<script>
-    document.addEventListener("DOMContentLoaded", async () => {
-        const csvUrl = "https://docs.google.com/spreadsheets/d/1M0rXV5xH1FOOn49ha6fBrvpfvQPbtJMvkbVkZ9D4HOQ/export?format=csv&id=1M0rXV5xH1FOOn49ha6fBrvpfvQPbtJMvkbVkZ9D4HOQ&gid=0"; // Replace with your actual CSV URL
-
-        const response = await fetch(csvUrl);
-        const text = await response.text();
-        const rows = parseCSV(text);
-
-        // Filter out empty rows and reverse for newest first
-        const validRows = rows.filter(r => r.some(cell => cell.trim() !== "")).reverse();
-
-        const header = document.querySelector("header");
-
-        validRows.reverse().forEach(([_1, _2, _3, _4, _5, title, image, styledText]) => {
-            if (title && image && styledText) {
-                const section = document.createElement("section");
-
-                const h2 = document.createElement("h2");
-                h2.textContent = title || "Untitled";
-
-                const p1 = document.createElement("img");
-                p1.src = image;
-
-                p1.style.width = "100%";
-                p1.style.borderRadius = "10px";
-
-                const p2 = document.createElement("p");
-                p2.textContent = styledText || "";
-                p2.style.color = "#ffcc00"; // Example style
-                p2.style.fontStyle = "italic";
-
-                section.appendChild(h2);
-                section.appendChild(p1);
-                section.appendChild(p2);
-
-                // Insert each section directly after the header, so newer ones stack on top
-                header.insertAdjacentElement("afterend", section);
-            }
-        });
-
-
-        // Scroll to top section
-        //const firstSection = document.querySelector("section");
-        //if (firstSection) firstSection.scrollIntoView({ behavior: "smooth" });
-    });
-
-    function parseCSV(text) {
-        const rows = [];
-        const lines = text.trim().split("\n");
-
-        for (const line of lines) {
-            const cells = [];
-            let current = "";
-            let insideQuotes = false;
-
-            for (let i = 0; i < line.length; i++) {
-                const char = line[i];
-
-                if (char === '"' && line[i + 1] === '"') {
-                    // Escaped quote
-                    current += '"';
-                    i++;
-                } else if (char === '"') {
-                    insideQuotes = !insideQuotes;
-                } else if (char === ',' && !insideQuotes) {
-                    cells.push(current.trim());
-                    current = "";
-                } else {
-                    current += char;
-                }
-            }
-
-            cells.push(current.trim()); // push last cell
-            rows.push(cells);
-        }
-
-        return rows;
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CYC SMP — Gallery</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="images/favicon.png">
+  <script defer src="assets/script.js"></script>
+  <style>
+    /* Let Tailwind animate max-height */
+    .transition-max-height {
+      transition: max-height 0.3s ease;
     }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+  <header class="bg-gray-800 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-semibold tracking-wide">CYC SMP</h1>
 
+      <!-- Hamburger button -->
+      <button id="menu-btn" class="md:hidden text-gray-200 text-3xl focus:outline-none">
+        ☰
+      </button>
 
-</script>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-6">
+        <a class="hover:text-sky-400" href="index.html">Home</a>
+        <a class="hover:text-sky-400" href="news.html">News</a>
+        <a class="hover:text-sky-400" href="members.html">Members</a>
+        <a class="hover:text-sky-400 text-sky-400" href="gallery.html">Gallery</a>
+        <a class="hover:text-sky-400" href="downloads.html">Downloads</a>
+      </nav>
+    </div>
+
+    <!-- Mobile Dropdown Panel -->
+    <div id="mobile-menu"
+         class="max-h-0 overflow-hidden md:hidden bg-gray-800 border-t border-gray-700 transition-max-height duration-300">
+      <nav class="px-4 py-3 space-y-3 text-lg">
+        <a class="block hover:text-sky-400" href="index.html">Home</a>
+        <a class="block hover:text-sky-400" href="news.html">News</a>
+        <a class="block hover:text-sky-400" href="members.html">Members</a>
+        <a class="block hover:text-sky-400 text-sky-400" href="gallery.html">Gallery</a>
+        <a class="block hover:text-sky-400" href="downloads.html">Downloads</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto p-6 pb-16">
+    <div id="gallery-container" class="grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"></div>
+  </main>
+
+  <footer class="px-2 mt-8 fixed bottom-0 w-full bg-gray-800 backdrop-blur py-0 h-14 text-center text-sm text-gray-400 flex items-center justify-between space-x-4">
+    <img src="images/favicon.png" alt="CYC SMP Logo" class="inline-block w-10 h-10" />
+
+    © 2026 CYC SMP
+
+    <div>
+      <!-- Discord -->
+      <a href="https://discord.gg/DGXFjRkVg7" target="_blank" aria-label="Discord Server"
+         class="inline-block mx-2 relative w-6 h-6 group">
+        <img src="images/Discord-white.svg" alt="Discord"
+             class="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-100 group-hover:opacity-0" />
+        <img src="images/Discord.svg" alt="Discord"
+             class="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+      </a>
+
+      <!-- YouTube -->
+      <a href="https://www.youtube.com/@CYC-SMP" target="_blank" aria-label="YouTube Channel"
+         class="inline-block mx-2 relative w-6 h-6 group">
+        <img src="images/Youtube-white.svg" alt="YouTube"
+             class="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-100 group-hover:opacity-0" />
+        <img src="images/Youtube.svg" alt="YouTube"
+             class="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+      </a>
+    </div>
+  </footer>
+
+  <!-- Image Modal -->
+  <div id="image-modal"
+       class="fixed inset-0 bg-black/80 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-200 z-50">
+    <img id="modal-image" src="" class="max-h-[90vh] max-w-[90vw] rounded shadow-lg">
+  </div>
 
 </body>
 </html>

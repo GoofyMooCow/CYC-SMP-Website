@@ -1,108 +1,154 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Unsubscribe — CYC Heritage SMP</title>
-  <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --accent:#60a5fa;
-      --muted:#94a3b8;
-      --white:#f8fafc;
-      --radius:14px;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    *{box-sizing:border-box}
-    body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(180deg,#071127 0%, var(--bg) 100%);color:var(--white);padding:36px}
-
-    .card{
-      width:100%;max-width:820px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:var(--radius);padding:28px;box-shadow:0 8px 30px rgba(2,6,23,0.7);border:1px solid rgba(255,255,255,0.03);
-    }
-
-    header{display:flex;align-items:center;gap:16px}
-    .logo{
-      width:64px;height:64px;flex:0 0 64px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#3b82f6);display:flex;align-items:center;justify-content:center;font-weight:700;color:#02203a;font-size:22px
-    }
-
-    h1{margin:0;font-size:20px}
-    p.lead{color:var(--muted);margin:10px 0 20px}
-
-    .steps{display:grid;grid-template-columns:1fr;gap:12px}
-    .step{background:rgba(255,255,255,0.01);padding:14px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
-    .step h3{margin:0 0 6px;font-size:15px}
-    .step p{margin:0;color:var(--muted);font-size:14px}
-
-    .email-box{display:flex;gap:12px;align-items:center;margin-top:18px}
-    .addr{font-family:monospace;background:rgba(255,255,255,0.02);padding:10px 12px;border-radius:8px;border:1px dashed rgba(255,255,255,0.03);user-select:text}
-
-    .cta{display:flex;gap:12px;margin-top:18px}
-    .btn{
-      background:linear-gradient(180deg,var(--accent),#2563eb);color:white;padding:12px 16px;border-radius:10px;border:none;cursor:pointer;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px
-    }
-    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--white)}
-
-    .note{margin-top:16px;color:var(--muted);font-size:13px}
-
-    footer{margin-top:20px;border-top:1px solid rgba(255,255,255,0.02);padding-top:14px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
-
-    @media (max-width:520px){
-      .logo{width:54px;height:54px;font-size:18px}
-      .card{padding:18px}
-    }
-  </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>CYC SMP — Unsubscribe</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" href="images/favicon.png">
+    <script defer src="assets/script.js"></script>
+    <style>
+        .transition-max-height {
+            transition: max-height 0.3s ease;
+        }
+    </style>
 </head>
-<body>
-  <main class="card" role="main">
-    <header>
-      <div class="logo">CYC</div>
-      <div>
-        <h1>Unsubscribe from CYC Heritage SMP emails</h1>
-        <p class="lead">We’re sorry to see you go. To remove your email from our mailing list, please follow the instructions below.</p>
-      </div>
-    </header>
 
-    <section class="steps" aria-label="unsubscribe instructions">
-      <div class="step">
-        <h3>Step 1 — Open a new email</h3>
-        <p>Open your preferred email app (Gmail, Outlook, Apple Mail, etc.).</p>
-      </div>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
 
-      <div class="step">
-        <h3>Step 2 — Send the unsubscribe request</h3>
-        <p>Send an email to the address below with the subject <strong>Unsubscribe</strong>. In the message body include the email address you want removed.</p>
-      </div>
+<!-- HEADER -->
+<header class="bg-gray-800 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+        <h1 class="text-2xl font-semibold tracking-wide">CYC SMP</h1>
 
-      <div class="step">
-        <h3>Step 3 — Wait for confirmation</h3>
-        <p>We’ll process your request and send a confirmation when the address has been removed. This usually takes 1–3 business days.</p>
-      </div>
-    </section>
+        <!-- Hamburger -->
+        <button id="menu-btn" class="md:hidden text-gray-200 text-3xl focus:outline-none">☰</button>
 
-    <div class="email-box">
-      <div class="addr" aria-hidden="false">CYCHeritageSMP@gmail.com</div>
-      <button class="btn secondary" onclick="copyAddress()" aria-label="Copy email address">Copy address</button>
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex space-x-6">
+            <a class="hover:text-sky-400" href="index.html">Home</a>
+            <a class="hover:text-sky-400" href="news.html">News</a>
+            <a class="hover:text-sky-400" href="members.html">Members</a>
+            <a class="hover:text-sky-400" href="gallery.html">Gallery</a>
+            <a class="hover:text-sky-400" href="downloads.html">Downloads</a>
+        </nav>
     </div>
 
-    <p class="note">If you no longer have access to the email you want removed, include any information you can (previous username or alternate contact) in your message so we can verify your identity.</p>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+         class="max-h-0 overflow-hidden md:hidden bg-gray-800 border-t border-gray-700 transition-max-height duration-300">
+        <nav class="px-4 py-3 space-y-3 text-lg">
+            <a class="block hover:text-sky-400" href="index.html">Home</a>
+            <a class="block hover:text-sky-400" href="news.html">News</a>
+            <a class="block hover:text-sky-400" href="members.html">Members</a>
+            <a class="block hover:text-sky-400" href="gallery.html">Gallery</a>
+            <a class="block hover:text-sky-400" href="downloads.html">Downloads</a>
+        </nav>
+    </div>
+</header>
 
-    <footer>
-      <div>Privacy: We will only use the information you send to process your request.</div>
-      <div>&copy; CYC Heritage SMP</div>
-    </footer>
-  </main>
+<!-- MAIN -->
+<main class="max-w-3xl mx-auto p-6 pb-20">
+    <section class="bg-gray-800 rounded-xl p-6 shadow-lg space-y-4">
 
-  <script>
-    function copyAddress(){
-      const text = 'CYCHeritageSMP@gmail.com';
-      navigator.clipboard?.writeText(text).then(()=>{
-        alert('Email address copied to clipboard');
-      }).catch(()=>{
-        // fallback
-        const el = document.createElement('textarea'); el.value = text; document.body.appendChild(el); el.select(); document.execCommand('copy'); el.remove(); alert('Email address copied to clipboard');
-      })
+        <!-- Header -->
+        <div class="flex items-center gap-4">
+            <img src="images/favicon.png" class="w-14 h-14 rounded-lg" alt="" />
+            <div>
+                <h2 class="text-xl font-semibold">Unsubscribe from CYC SMP Emails</h2>
+                <p class="text-gray-400 mt-1">
+                    We're sorry to see you go. Follow the steps below to remove your email from our mailing list.
+                </p>
+            </div>
+        </div>
+
+        <!-- Steps -->
+        <div class="space-y-4">
+            <div class="bg-gray-700/40 border border-gray-600/40 rounded-lg p-4">
+                <h3 class="font-semibold text-gray-200">Step 1 — Open a new email</h3>
+                <p class="text-gray-400 text-sm">Open Gmail, Outlook, Apple Mail, or your email app of choice.</p>
+            </div>
+
+            <div class="bg-gray-700/40 border border-gray-600/40 rounded-lg p-4">
+                <h3 class="font-semibold text-gray-200">Step 2 — Send the unsubscribe request</h3>
+                <p class="text-gray-400 text-sm">
+                    Send an email to the address below with the subject <span class="text-gray-300 font-medium">Unsubscribe</span>.
+                    In the message body, include the email address you want removed.
+                </p>
+            </div>
+
+            <div class="bg-gray-700/40 border border-gray-600/40 rounded-lg p-4">
+                <h3 class="font-semibold text-gray-200">Step 3 — Wait for confirmation</h3>
+                <p class="text-gray-400 text-sm">
+                    We’ll process your request and send a confirmation within 1–3 business days.
+                </p>
+            </div>
+        </div>
+
+        <!-- Email + copy button -->
+        <div class="flex items-center gap-3 pt-2">
+            <div class="px-3 py-2 rounded bg-gray-700/40 border border-gray-600/40 font-mono select-text">
+                cyc.mc.smp@gmail.com
+            </div>
+
+            <button onclick="copyAddress()"
+                    class="px-4 py-2 bg-gray-700 hover:bg-gray-600 border border-gray-600/60 rounded-lg text-sm">
+                Copy
+            </button>
+        </div>
+
+        <p class="text-gray-400 text-sm">
+            If you no longer have access to the email you want removed, please include any identifying details
+            (previous username or alternate contact) so we can verify identity.
+        </p>
+
+        <!-- Footer note inside card -->
+        <div class="pt-4 border-t border-gray-600/40 text-gray-400 text-sm">
+            Privacy: We only use the information you send to process your request.
+        </div>
+    </section>
+</main>
+
+<!-- FOOTER -->
+<footer class="px-2 mt-8 fixed bottom-0 w-full bg-gray-800 backdrop-blur py-0 h-14 text-center text-sm text-gray-400 flex items-center justify-between space-x-4">
+    <img src="images/favicon.png" alt="CYC SMP Logo" class="inline-block w-10 h-10" />
+
+    © 2026 CYC SMP
+
+    <div>
+        <!-- Discord -->
+        <a href="https://discord.gg/DGXFjRkVg7" target="_blank"
+           class="inline-block mx-2 relative w-6 h-6 group">
+            <img src="images/Discord-white.svg" class="absolute inset-0 w-full h-full opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+            <img src="images/Discord.svg" class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/@CYC-SMP" target="_blank"
+           class="inline-block mx-2 relative w-6 h-6 group">
+            <img src="images/Youtube-white.svg" class="absolute inset-0 w-full h-full opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+            <img src="images/Youtube.svg" class="absolute inset-0 w-full h-full opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        </a>
+    </div>
+</footer>
+
+<!-- Script -->
+<script>
+    function copyAddress() {
+        const text = "cyc.mc.smp@gmail.com";
+        navigator.clipboard?.writeText(text).then(() => {
+            alert("Email address copied!");
+        }).catch(() => {
+            const el = document.createElement("textarea");
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand("copy");
+            el.remove();
+            alert("Email address copied!");
+        });
     }
-  </script>
+</script>
+
 </body>
 </html>

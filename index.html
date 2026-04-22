@@ -1,252 +1,105 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>CYC Heritage SMP</title>
-    <link rel="icon" type="image/png" href="icon.png">
-    <link rel="stylesheet" href="./styles.css">
-</head>
-<body>
-
-<header style="height: 70px; display: flex; align-items: center; justify-content: space-between; padding: 10px 20px; background-color: #333;">
-    <a href="./index.html" style="color: white; text-decoration: none; font-size: 1.5em;">
-        🌍 CYC Heritage SMP
-    </a>
-    <div>
-        <a href="./index.html" style="
-        background-color: #ff0000;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-left: 16px;
-        text-align: center;
-    " onmouseover="this.style.backgroundColor='#cc0000';" onmouseout="this.style.backgroundColor='#ff0000';">
-            Home
-        </a>
-        <a href="./news.html" style="
-        background-color: #ff0000;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-left: 16px;
-        text-align: center;
-    " onmouseover="this.style.backgroundColor='#cc0000';" onmouseout="this.style.backgroundColor='#ff0000';">
-            News
-        </a>
-        <a href="./teams.html" style="
-        background-color: #ff0000;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-left: 16px;
-        text-align: center;
-    " onmouseover="this.style.backgroundColor='#cc0000';" onmouseout="this.style.backgroundColor='#ff0000';">
-            Teams
-        </a>
-        <a href="./gallery.html" style="
-        background-color: #ff0000;
-        color: white;
-        padding: 8px 16px;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: background-color 0.3s;
-        margin-left: 16px;
-        text-align: center;
-    " onmouseover="this.style.backgroundColor='#cc0000';" onmouseout="this.style.backgroundColor='#ff0000';">
-            Gallery
-        </a>
-    </div>
-</header>
-
-
-<section class="server-info">
-    <h2>Server Information</h2>
-    <p><strong>Minecraft Java IP:</strong> partner-indonesia.gl.joinmc.link</p>
-    <p><strong>Minecraft Bedrock IP:</strong> monday-moore.gl.at.ply.gg</p>
-    <p><strong>Minecraft Bedrock Port:</strong> 15940</p>
-</section>
-
-<section class="server-status" style="display: flex; gap: 20px;">
-    <div id="status-section" style="flex: 0 0 250px;"> <!-- fixed width for status -->
-        <h2>Server Status</h2>
-        <p><strong>Status:</strong> <span id="status">Loading...</span></p>
-        <p><strong>Players Online:</strong> <span id="players">Loading...</span></p>
-    </div>
-    <div id="player-list" style="flex: 1; max-height: 100%; overflow-y: auto; display: flex; flex-wrap: wrap; gap: 10px; background: rgba(255,255,255,0.1); padding: 10px; border-radius: 10px;">
-        <!-- Players will appear here -->
-    </div>
-</section>
-
-<section class="socials">
-    <button onclick="window.location.href='https://discord.gg/hZG2TCzyTB';" style="margin-bottom: 10px; display:flex;align-items:center;gap:12px;width:100%;background:#5865f2;color:#fff;border:none;border-radius:25px;height:55px;font-size:22px;font-weight:600;padding:0 20px;cursor:pointer;transition:background .3s,transform .1s;" onmouseover="this.style.background='#4752c4'" onmouseout="this.style.background='#5865f2'"><img src="Discord-white.svg" alt="Discord" style="width:28px;height:28px;">Discord</button>
-    <!--button onclick="window.location.href='https://qc1159.github.io/Quick-Chat/?chatwith=CYCHeritageSMP';" style="margin-bottom: 10px; display:flex;align-items:center;gap:12px;width:100%;background:#ff7f27;color:#fff;border:none;border-radius:25px;height:55px;font-size:22px;font-weight:600;padding:0 20px;cursor:pointer;transition:background .3s,transform .1s;" onmouseover="this.style.background='#e16b1a'" onmouseout="this.style.background='#ff7f27'"><img src="QuickChat-white.svg" alt="Quick Chat" style="width:28px;height:28px;">Quick Chat</button-->
-    <button onclick="window.location.href='https://www.youtube.com/@CYCHeritageSMP';" style="display:flex;align-items:center;gap:12px;width:100%;background:#ff0000;color:#fff;border:none;border-radius:25px;height:55px;font-size:22px;font-weight:600;padding:0 20px;cursor:pointer;transition:background .3s,transform .1s;" onmouseover="this.style.background='#d30000'" onmouseout="this.style.background='#ff0000'"><img src="Youtube-white.svg" alt="YouTube" style="width:28px;height:28px;">YouTube</button>
-</section>
-
-<footer>
-    <p style="position: absolute; left: 10px;">&copy; 2025 CYC Heritage SMP</p>
-
-    <!-- Discord -->
-    <a href="https://discord.gg/hZG2TCzyTB"
-       target="_blank"
-       class="icon"
-       aria-label="Discord Server">
-        <img src="Discord-white.svg" class="white" alt="Discord">
-        <img src="Discord.svg" class="color" alt="Discord">
-    </a>
-
-    <!-- QuickChat -->
-    <!--a href="https://qc1159.github.io/Quick-Chat/?chatwith=CYCHeritageSMP"
-       target="_blank"
-       class="icon"
-       aria-label="Quick Chat Page">
-        <img src="QuickChat-white.svg" class="white" alt="QuickChat">
-        <img src="QuickChat.svg" class="color" alt="QuickChat">
-    </a-->
-
-    <!-- YouTube -->
-    <a href="https://www.youtube.com/@CYCHeritageSMP"
-       target="_blank"
-       class="icon"
-       aria-label="YouTube Channel">
-        <img src="Youtube-white.svg" class="white" alt="YouTube">
-        <img src="Youtube.svg" class="color" alt="YouTube">
-    </a>
-</footer>
-
-
-
-<script>
-    async function fetchServerStatus() {
-        const statusEl = document.getElementById('status');
-        const playersEl = document.getElementById('players');
-        const playerListEl = document.getElementById('player-list');
-
-        try {
-            const ip = "partner-indonesia.gl.joinmc.link";
-
-            const response = await fetch('https://api.mcsrvstat.us/3/' + ip);
-            const data = await response.json();
-
-            statusEl.style.color = data.online ? 'white' : 'red';
-            statusEl.textContent = data.online ? 'Loading...' : 'Offline ❌';
-            playersEl.textContent = data.online ? 'Loading...' : '0';
-
-            if (!data.online) return;
-
-            const response2 = await fetch('https://mc-api.net/v3/server/ping/' + ip);
-            const data2 = await response2.json();
-
-            // Update status
-            statusEl.style.color = data.online ? 'lime' : 'red';
-            statusEl.textContent = data.online ? 'Online ✅' : 'Offline ❌';
-            playersEl.textContent = data.online ? `${data.players.online} / ${data.players.max}` : '0';
-
-            playerSample = data2.players.sample;
-
-            // Update player list
-            playerListEl.innerHTML = ''; // Clear previous
-            if (data2.online && data2.players.sample) {
-                data2.players.sample.forEach(player => {
-                    const playerDiv = document.createElement('div');
-                    playerDiv.classList.add("player");
-                    playerDiv.style.cursor = "pointer";
-                    playerDiv.style.textAlign = 'center';
-                    playerDiv.style.width = '80px';
-                    playerDiv.style.height = '80px';
-                    playerDiv.style.background = 'rgba(255,255,255,0.1)';
-                    playerDiv.style.borderRadius = '10px';
-                    playerDiv.style.display = 'flex';
-                    playerDiv.style.flexDirection = 'column';
-                    playerDiv.style.alignItems = 'center';
-                    playerDiv.style.justifyContent = 'center';
-
-                    const img = document.createElement('img');
-
-                    if (player.name.indexOf(".") === -1) {
-                        playerDiv.addEventListener('click', () => {
-                            window.open(`https://namemc.com/profile/${player.name}`, '_blank');
-                        });
-
-                        img.src = `https://minotar.net/helm/${player.name}/50`; // fake head
-                        img.alt = player.name;
-                        img.style.borderRadius = '10%';
-                        img.style.display = 'block';
-                        img.style.marginBottom = '5px';
-                    } else {
-                        playerDiv.addEventListener('click', (e) => {
-                            // Remove any existing tooltip
-                            const existing = document.querySelector(".tooltip-note");
-                            if (existing) existing.remove();
-
-                            // Create tooltip element
-                            const tooltip = document.createElement("div");
-                            tooltip.className = "tooltip-note";
-                            tooltip.textContent = "This player is a bedrock player, no profile available.";
-
-                            // Position near cursor
-                            tooltip.style.position = "absolute";
-                            tooltip.style.left = e.pageX + 10 + "px";
-                            tooltip.style.top = e.pageY + 10 + "px";
-                            tooltip.style.background = "rgba(0,0,0,0.8)";
-                            tooltip.style.color = "#fff";
-                            tooltip.style.padding = "6px 10px";
-                            tooltip.style.borderRadius = "6px";
-                            tooltip.style.fontSize = "14px";
-                            tooltip.style.pointerEvents = "none";
-                            tooltip.style.zIndex = "1000";
-                            tooltip.style.transition = "opacity 0.3s";
-
-                            document.body.appendChild(tooltip);
-
-                            // Fade out after 2s
-                            setTimeout(() => {
-                                tooltip.style.opacity = "0";
-                                setTimeout(() => tooltip.remove(), 300);
-                            }, 2000);
-                        });
-
-                        img.src = "https://minotar.net/helm/MHF_Steve/50"; // fake head
-                        img.alt = player.name;
-                        img.style.borderRadius = '10%';
-                        img.style.display = 'block';
-                        img.style.marginBottom = '5px';
-                    }
-
-
-
-                    const name = document.createElement('span');
-                    name.textContent = player.name;
-                    name.style.fontSize = '0.7em';
-                    name.style.wordBreak = 'break-word';
-
-                    playerDiv.appendChild(img);
-                    playerDiv.appendChild(name);
-                    playerListEl.appendChild(playerDiv);
-                });
-            }
-        } catch (error) {
-            console.error('Error fetching server status:', error);
-            statusEl.textContent = 'Error ❌';
-            statusEl.style.color = 'red'
-            playersEl.textContent = '-';
-            playerListEl.innerHTML = '';
-        }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>CYC SMP — Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="images/favicon.png">
+  <script defer src="assets/script.js"></script>
+  <style>
+    /* Let Tailwind animate max-height */
+    .transition-max-height {
+      transition: max-height 0.3s ease;
     }
+  </style>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
 
-    fetchServerStatus();
-    setInterval(fetchServerStatus, 30000);
-</script>
+  <header class="bg-gray-800 backdrop-blur sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+      <h1 class="text-2xl font-semibold tracking-wide">CYC SMP</h1>
 
+      <!-- Hamburger button -->
+      <button id="menu-btn" class="md:hidden text-gray-200 text-3xl focus:outline-none">
+        ☰
+      </button>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-6">
+        <a class="hover:text-sky-400 text-sky-400" href="index.html">Home</a>
+        <a class="hover:text-sky-400" href="news.html">News</a>
+        <a class="hover:text-sky-400" href="members.html">Members</a>
+        <a class="hover:text-sky-400" href="gallery.html">Gallery</a>
+        <a class="hover:text-sky-400" href="downloads.html">Downloads</a>
+      </nav>
+    </div>
+
+    <!-- Mobile Dropdown Panel -->
+    <div id="mobile-menu"
+         class="max-h-0 overflow-hidden md:hidden bg-gray-800 border-t border-gray-700 transition-max-height duration-300">
+      <nav class="px-4 py-3 space-y-3 text-lg">
+        <a class="block hover:text-sky-400 text-sky-400" href="index.html">Home</a>
+        <a class="block hover:text-sky-400" href="news.html">News</a>
+        <a class="block hover:text-sky-400" href="members.html">Members</a>
+        <a class="block hover:text-sky-400" href="gallery.html">Gallery</a>
+        <a class="block hover:text-sky-400" href="downloads.html">Downloads</a>
+      </nav>
+    </div>
+  </header>
+
+<main class="max-w-6xl mx-auto p-6 grid gap-6 pb-16">
+    <section class="bg-gray-800 rounded-xl p-6 flex flex-col md:flex-row md:items-center md:justify-between">
+      <div>
+        <h2 class="text-xl font-bold">Server IPs</h2>
+        <p class="mt-2"><strong>Java:</strong> <span id="java-ip"></span></p>
+        <p class="mt-1"><strong>Bedrock:</strong> <span id="bedrock-ip"></span></p>
+        <p id="bedrock-port-p" class="mt-1"><strong>Bedrock Port:</strong> <span id="bedrock-port"></span></p>
+      </div>
+      <div class="mt-4 md:mt-0 text-right">
+        <p id="status-text" class="text-lg">Checking status…</p>
+        <p id="player-count" class="text-sm text-gray-300"></p>
+      </div>
+    </section>
+
+    <section class="bg-gray-800 rounded-xl p-6">
+      <h2 class="text-lg font-semibold mb-3">Online Players</h2>
+      <div id="players-list" class="flex flex-wrap gap-4"></div>
+    </section>
+
+    <section class="bg-gray-800 rounded-xl p-6">
+      <h2 class="text-lg font-semibold mb-3">Latest News</h2>
+      <div id="news-preview" class="grid gap-3"></div>
+      <div class="mt-4">
+        <a href="news.html" class="inline-block bg-sky-500 hover:bg-sky-600 text-white px-4 py-2 rounded">See all news</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="px-2 mt-8 fixed bottom-0 w-full bg-gray-800 backdrop-blur py-0 h-14 text-center text-sm text-gray-400 flex items-center justify-between space-x-4">
+    <img src="images/favicon.png" alt="CYC SMP Logo" class="inline-block w-10 h-10" />
+
+    © 2026 CYC SMP
+
+    <div>
+      <!-- Discord -->
+      <a href="https://discord.gg/DGXFjRkVg7" target="_blank" aria-label="Discord Server"
+         class="inline-block mx-2 relative w-6 h-6 group">
+        <img src="images/Discord-white.svg" alt="Discord"
+             class="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-100 group-hover:opacity-0" />
+        <img src="images/Discord.svg" alt="Discord"
+             class="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+      </a>
+
+      <!-- YouTube -->
+      <a href="https://www.youtube.com/@CYC-SMP" target="_blank" aria-label="YouTube Channel"
+         class="inline-block mx-2 relative w-6 h-6 group">
+        <img src="images/Youtube-white.svg" alt="YouTube"
+             class="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-100 group-hover:opacity-0" />
+        <img src="images/Youtube.svg" alt="YouTube"
+             class="absolute inset-0 w-full h-full transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+      </a>
+    </div>
+  </footer>
 </body>
 </html>
