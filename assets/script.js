@@ -3,19 +3,16 @@ const JAVA_IP = 'cycsmp.feathermc.gg';
 const BEDROCK_IP = 'microsoft-queue.gl.at.ply.gg';
 const BEDROCK_PORT = '1283';
 
-async function uuidToUsername(uuid) {
+async function uuidToProfile(uuid) {
   // Mojang requires UUID without hyphens
   const clean = uuid.replace(/-/g, "");
 
-  const res = await fetch(`https://corsproxy.io/?${encodeURIComponent(
-      "https://api.mojang.com/user/profile/" + clean
-  )}`);
+  const res = await fetch(`https://playerdb.co/api/player/minecraft/${clean}`);
 
   if (res.status === 204) return null; // UUID does not exist
   if (!res.ok) throw new Error("Invalid UUID or rate limited");
 
-  const data = await res.json();
-  return data.name; // username
+  return await res.json(); // username
 }
 
 async function queryServer() {
@@ -102,11 +99,15 @@ async function renderMembersPage() {
   const members = await loadJSON('https://gist.githubusercontent.com/GoofyMooCow/68006ecb68f6ffdf01ea7cad859a3327/raw/members.json', []);
   container.innerHTML = '';
   for (const id of Object.keys(members)) {
-    const m = await uuidToUsername(id);
-    const head = `https://mc-heads.net/avatar/${m}/100`;
+    const profile = await uuidToProfile(id);
+    if (!profile) continue;
+
+    const m = profile.data.player;
+    const username = m.username
+    const head = "https://mc-heads.net/avatar/" + username + "/100";
     const el = document.createElement('div');
     el.className = 'bg-gray-800 p-3 rounded flex flex-col items-center';
-    el.innerHTML = `<img src="${head}" alt="${m}" class="rounded"/><div class="mt-2 text-sm">${m}</div>`;
+    el.innerHTML = `<img src="${head}" alt="${username}" class="rounded"/><div class="mt-2 text-sm">${username}</div>`;
     container.appendChild(el);
   }
 }
