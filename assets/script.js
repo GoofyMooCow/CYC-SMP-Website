@@ -1,7 +1,7 @@
 // Client-side site logic: status, data loading and rendering
 const JAVA_IP = 'cycsmp.feathermc.gg';
-const BEDROCK_IP = 'microsoft-queue.gl.at.ply.gg';
-const BEDROCK_PORT = '1283';
+const BEDROCK_IP = 'additional-lm.gl.at.ply.gg';
+const BEDROCK_PORT = '30615';
 
 async function uuidToProfile(uuid) {
   // Mojang requires UUID without hyphens
