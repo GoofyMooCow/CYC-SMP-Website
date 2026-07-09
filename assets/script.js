@@ -3,16 +3,27 @@ const JAVA_IP = 'cycsmp.feathermc.gg';
 const BEDROCK_IP = 'additional-lm.gl.at.ply.gg';
 const BEDROCK_PORT = '30615';
 
-async function uuidToProfile(uuid) {
+async function uuidToProfile(uuid, bedrock, name) {
+
   // Mojang requires UUID without hyphens
   const clean = uuid.replace(/-/g, "");
 
-  const res = await fetch(`https://playerdb.co/api/player/minecraft/${clean}`);
+  let res = ""
+
+  if (bedrock) {
+    res = {"data":{"player":{"username":name}}}
+  } else {
+    res = await fetch(`https://playerdb.co/api/player/minecraft/${clean}`);
+  }
 
   if (res.status === 204) return null; // UUID does not exist
-  if (!res.ok) throw new Error("Invalid UUID or rate limited");
+  if (!res.ok && !bedrock) throw new Error("Invalid UUID or rate limited");
 
-  return await res.json(); // username
+  if (bedrock) {
+    return res
+  } else {
+    return await res.json(); // username
+  }
 }
 
 async function queryServer() {
@@ -99,15 +110,17 @@ async function renderMembersPage() {
   const members = await loadJSON('https://gist.githubusercontent.com/GoofyMooCow/68006ecb68f6ffdf01ea7cad859a3327/raw/members.json', []);
   container.innerHTML = '';
   for (const id of Object.keys(members)) {
-    const profile = await uuidToProfile(id);
+    const profile = await uuidToProfile(id, members[id].bedrock, members[id].name);
     if (!profile) continue;
 
     const m = profile.data.player;
     const username = m.username
-    const head = "https://mc-heads.net/avatar/" + username + "/100";
+    const head = members[id].bedrock
+      ? `https://mc-api.io/render/face/${username}/bedrock?size=100`
+      : `https://mc-heads.net/avatar/${username}/100`;
     const el = document.createElement('div');
     el.className = 'bg-gray-800 p-3 rounded flex flex-col items-center';
-    el.innerHTML = `<img src="${head}" alt="${username}" class="rounded"/><div class="mt-2 text-sm">${username}</div>`;
+    el.innerHTML = `<img src="${head}" alt="${username}" class="rounded"/><div class="mt-2 text-sm">${members[id].bedrock ? "." + username.replace(" ", "_") : username}</div>`;
     container.appendChild(el);
   }
 }
